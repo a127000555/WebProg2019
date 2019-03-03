@@ -90,7 +90,6 @@ function change_degree(btn,target){
 	}
 	setTimeout(f,interval);
 	
-
 }
 document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e){
@@ -99,6 +98,4 @@ function keyDownHandler(e){
 	if(e.keyCode == 37)
 		prev_image(0);
 }
-
-// transform: rotate(25deg);
 check_boundary();
