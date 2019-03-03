@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Viewer</title>
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+</head>
+
+<body>
+    <div class="loader">
+        <img src="./images/initial.gif" alt="Loading..." style="width:800px;height:600px;"/>
+    </div>
+    <div class="image-viewer__container">
+        <span class="image-viewer__title">Image Viewer</span>
+
+        <div class="image-viewer__main">
+            <div class="image-viewer__button" onclick="previousImage()">
+                <img src="./images/back.png" title="prev" id="prev">
+            </div>
+            <div class=image-viewer__display>
+                <img src="./images/1.png" title="next" id=display>
+            </div>
+            <div class="image-viewer__button" onclick="nextImage()">
+                <img src="./images/next.png" title="next" id="next">
+            </div>
+        </div>
+
+        <div id="source">
+            Sponge Bob
+        </div>
+    </div>
+
+</body>
+
+<script src="./main.js"></script>
+
+</html>
