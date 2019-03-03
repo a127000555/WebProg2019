@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Image Viewer</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+	</head>
+	<body>
+		<div class="image-viewer__container">
+			<div class="image-viewer__title">
+				<span>Image Viewer</span>
+			</div>
+			<div class="alert alert-danger" id="warning_bar" style="height: 45px;opacity: 0;">
+
+			</div>
+
+			<div class="image-viewer__main">
+				<div class="image-viewer__button"  onclick="prev_image()">
+					<img id="back_btn" src="images/back.png">
+				</div>
+
+				<div class="image-viewer__display">
+					
+					<img id="display" src="https://http.cat/100">
+
+
+				</div>
+				
+				<div class="image-viewer__button" onclick="next_image()">
+					<img  id="next_btn"  src="images/next.png">
+				</div>
+				
+			</div>
+
+		</div>
+	</body>
+	<script src="main.js"></script>
+
+</html>
