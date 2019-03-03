@@ -15,31 +15,27 @@ function warning(msg){
 	warning_bar.innerHTML = msg;
 	warning_bar.style.cssText = "height: 45px;opacity : 1;";
 }
+function change_pic(target_url){
+	target_img_src.src='images/loading.gif';
+	target_img_src.onload = function() {
+		target_img_src.src=target_url;
+	}
+	warning_bar.style.cssText = "height: 45px;opacity : 0;";
+	check_boundary();
+}
 function prev_image(){
 	if(now_index != 0){
-		target_url = url_prefix + url_list[--now_index];
-		target_img_src.src='images/loading.gif';
-		target_img_src.onload = function() {
-			target_img_src.src=target_url;
-		}
-		warning_bar.style.cssText = "height: 45px;opacity : 0;";
+		change_pic(url_prefix + url_list[--now_index]);
 	}else{
 		warning("leftmost!");
 	}
-	check_boundary();
 }
 function next_image(){
 	if(now_index != url_list.length-1){
-		target_url = url_prefix + url_list[++now_index];
-		target_img_src.src='images/loading.gif';
-		target_img_src.onload = function() {
-			target_img_src.src=target_url;
-		}
-		warning_bar.style.cssText = "height: 45px;opacity : 0;";
+		change_pic(url_prefix + url_list[++now_index]);
 	}else{
 		warning("rightmost!");
 	}
-	check_boundary();
 }
 document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e){
@@ -49,6 +45,5 @@ function keyDownHandler(e){
 	if(e.keyCode == 37)
 		prev_image(0);
 }
-
 
 check_boundary();
