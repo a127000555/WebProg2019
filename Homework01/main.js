@@ -1,6 +1,6 @@
 // get global item information & make copy
-const templete_item_dom = document.getElementById("item0").cloneNode(true);
-templete_item_dom.children[0].children[0].checked = 0;
+const template_item_dom = document.getElementById("item0").cloneNode(true);
+template_item_dom.children[0].children[0].checked = 0;
 document.getElementById("item0").children[0].children[0].checked = 0;
 var now_item_top = 1;
 var now_exist_items = [ document.getElementById("item0") ];
@@ -9,8 +9,8 @@ var now_mode = 'All'; // 'All' / 'Completed' / 'Active'
 
 // create items in todo-list
 function create_item( s ){
-	
-	let this_item = templete_item_dom.cloneNode(true);
+
+	let this_item = template_item_dom.cloneNode(true);
 	this_item.id = "item" + (now_item_top);
 	this_item.children[1].textContent = s ;
 	this_item.children[2].id = now_item_top + '_img' ;
@@ -41,14 +41,14 @@ function update_left(){
 }
 
 function update_item_style( sub_item ){
-
+	// item-style: line-through & opacity
 	let checked = sub_item.children[0].children[0].checked;
 	sub_item.children[1].style["opacity"] = checked ? 0.5: 1 ;
 	sub_item.children[1].style["textDecoration"] = checked ? "line-through" : "" ;		
 }
 
 function change_mode( mode ){
-
+	// only click button can invoke this function.
 	now_mode = mode;
 	let item_main = document.getElementById("todo-list");
 	while (item_main.firstChild) 
@@ -75,6 +75,7 @@ function clear_completed(){
 
 document.addEventListener("keydown", keyDownHandler, false);
 function keyDownHandler(e){
+	// Catch enter signal, and trim the todo-string.
 	if(e.keyCode == 13 && e.target.value.trim() !== ''){
 		create_item( e.target.value.trim() );
 		e.target.value = ''
@@ -87,10 +88,10 @@ function keyDownHandler(e){
 
 document.addEventListener("click", clickHandler, false);
 function clickHandler(e){
-	
+	//	click the img-x.
 	if( e.target.className == 'todo-app__item-x' )
 		delete_item(parseInt(e.target.id));
-
+	//  click the checkbox
 	if( e.target.type == 'checkbox' )
 		update_item_style(now_exist_items[e.target.id]);
 
