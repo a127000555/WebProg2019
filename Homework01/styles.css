@@ -94,7 +94,42 @@ input[type='checkbox'] {
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.089);
     border-top: 0;
+    opacity: 0.5;
 }
+
+.todo-app__item {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    -ms-transition: 3s;
+    -o-transition: 3s;
+    transition: 3s;
+    opacity: 1 !important;
+}
+
+.todo-app__item_2 {
+    position: relative;
+    width: 100%;
+    min-height: 5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.089);
+    border-top: 0;
+    opacity: 0.5;
+}
+
+.todo-app__item_2 {
+    -webkit-transition: 1.5s;
+    -moz-transition: 1.5s;
+    -ms-transition: 1.5s;
+    -o-transition: 1.5s;
+    transition: 1.5s;
+    transition-timing-function: cubic-bezier(.5,.25,.125,.1,0);
+    opacity: 1 !important;
+}
+
 
 .todo-app__checkbox {
     width: 30px;
@@ -104,6 +139,7 @@ input[type='checkbox'] {
     border-radius: 100%;
     position: relative;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.312);
+    opacity: 1 ;
 }
 
 .todo-app__checkbox label {
@@ -111,7 +147,7 @@ input[type='checkbox'] {
     height: 20px;
     border-radius: 100px;
 
-    transition: all 0.5s ease;
+    transition: all 0.7s ease;
     cursor: pointer;
     position: absolute;
     top: 5px;
@@ -131,8 +167,9 @@ input[type='checkbox'] {
     font-weight: 300;
     overflow-wrap: break-word;
     width: 80%;
-    transition: opacity 0.3s;
+    transition: opacity 0.7s;
     height: 100%;
+    opacity: 1;
 }
 
 .todo-app__footer {
@@ -207,7 +244,7 @@ input[type='checkbox'] {
     overflow-wrap: break-word;
     width: 80%;
     min-height: 3em;
-    transition: opacity 0.3s;
+    transition: opacity 0.7s;
     border: none;
 }
 

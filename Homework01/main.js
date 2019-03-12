@@ -16,9 +16,28 @@ function create_item( s ){
 	this_item.children[2].id = now_item_top + '_img' ;
 	this_item.children[0].children[0].id = "" + (now_item_top);
 	this_item.children[0].children[1].htmlFor = "" + (now_item_top);
+
 	if ( now_mode != 'Completed' ){
+		
+		this_item.children[1].style['opacity']='0';
+		this_item.children[0].style['opacity']='0';
 		let item_main = document.getElementById("todo-list");
-		item_main.appendChild(this_item);
+		let temp_li = document.createElement("LI");
+		temp_li.classList.add('todo-app__item_2');
+		temp_li.classList.add('heightTranslate');
+		item_main.prepend(temp_li);
+		temp_li.style['min-height'] = 0;
+		setTimeout(function(){
+			temp_li.style['min-height'] = '5em';
+			setTimeout(function(){
+				item_main.prepend(this_item);
+				setTimeout(function(){
+					this_item.children[1].style['opacity']='1';
+					this_item.children[0].style['opacity']='1';
+				},100)
+				item_main.removeChild(temp_li);
+			},1500)
+		},300);
 	}
 	now_exist_items[now_item_top] = this_item;
 	now_item_top ++ ;
@@ -45,6 +64,7 @@ function update_item_style( sub_item ){
 	let checked = sub_item.children[0].children[0].checked;
 	sub_item.children[1].style["opacity"] = checked ? 0.5: 1 ;
 	sub_item.children[1].style["textDecoration"] = checked ? "line-through" : "" ;		
+
 }
 
 function change_mode( mode ){
@@ -59,9 +79,9 @@ function change_mode( mode ){
 		update_item_style(sub_item);
 
 		if ( checked && mode != 'Active' ) 
-			item_main.appendChild(sub_item);
+			item_main.prepend(sub_item);
 		if ( !checked && mode != 'Completed' ) 
-			item_main.appendChild(sub_item);
+			item_main.prepend(sub_item);
 
 	});
 }
@@ -82,6 +102,7 @@ function keyDownHandler(e){
 		if(now_exist_items[0]){
 			now_exist_items[0].children[0].children[0].checked = 1;
 			update_item_style(now_exist_items[0]);
+			update_left();
 		}
 	}
 }
@@ -98,5 +119,3 @@ function clickHandler(e){
 	update_left();
 }
 
-create_item("Test 1");
-create_item("Test 2");
