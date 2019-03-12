@@ -19,7 +19,7 @@ WebProb 2019 Hw1
 
 * 一開始進入就會有一像todo。
 
-  ![1552385200529](/home/arvin/.config/Typora/typora-user-images/1552385200529.png)
+  ![1552385200529](img/explain.png)
 
 * 當新增一項todo之後，這項default todo "Try to add one todo!"會被**自動**"Completed"。
 
