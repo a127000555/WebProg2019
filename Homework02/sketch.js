@@ -5,6 +5,8 @@ const pipe_width = 104;
 const pipe_height = 640;
 const bird_width = 68;
 const bird_height = 48;
+const score_width = 48;
+const score_height = 72;
 const W = 432;
 const H = 768;
 
@@ -73,18 +75,21 @@ function setup() {
 	// setup code below
 	init();
 }
-function collide_ceiling_action(){
-	vy = 0;
-	y = bird_height;
-	if(!end){
+function collide_ceiling_action(default_y = bird_height){
+	if(end == 0){
+		vy = 0;
+		y = default_y;
 		hitSound.play();
 		dieSound.play();
 	}
 	end = 1;
 }
-function collide_ground_action(){
+function collide_ground_action(default_y = undefined){
 	ay = vy = ddeg = 0;
 	// y = H-bird[0][0].height;
+	if(default_y){
+		y = default_y;
+	}
 	if(end != 2){
 		hitSound.play();
 	}
@@ -94,7 +99,7 @@ rec = [0,0]
 t = 0;
 function draw() {
 	background(0);
-	
+
 	if(start){
 		// Starting or GameOver
 
@@ -107,27 +112,16 @@ function draw() {
 			rec[0] = pipe_pos[0];
 			rec[1] = pipe_pos[1];
 			t++;
-			console.log(pipe_pos[0],pipe_pos[1] ,  scene_time);
 		}
 		// Move Scene
 		for(let i=0;i<2;i++){
 
 			// background move
 			image(bgImg[scene_idx], scene_time - i*W, 0, W, H);
-			
-			// pipe move
-			image(pipeImg[0][1], scene_time - i*W + 80, pipe_pos[i]-pipe_height ,pipe_width, pipe_height);
-			image(pipeImg[0][0], scene_time - i*W + 80, pipe_pos[i]+pipe_interval[i] ,pipe_width, pipe_height);			
 		
 		}
 
-		// GameOver Scene
-		if (end){
-
-			image(endImg, (W - endImg.width*2)/2 , (H - endImg.height*8)/2,endImg.width*2,endImg.height*2);
-
-		// Starting		
-		}else if(start && !end){
+		if(start && !end){
 
 			if( scene_time == 0 ){
 				// Swap scene 0 1
@@ -155,13 +149,32 @@ function draw() {
 		image(openImg, (W - openImg.width*2)/2 , (H - openImg.height*2)/2,openImg.width*2,openImg.height*2);
 	}
 
-
+	console.log('end',end);
 	// ceiling / ground collision detect.
-	if( y < 0 ){
+	if( y < 0 )
 		collide_ceiling_action();
-	}
-	if( y > wall_y - bird_height/2){
+	if( y > wall_y - bird_height/2) 
 		collide_ground_action();
+
+	if( 24 <= scene_time && scene_time <= 150 ){
+		if ( y - bird_height/2 <= pipe_pos[0] ){	
+			if( 54 <= scene_time && scene_time <= 120 )
+				collide_ceiling_action(pipe_pos[0] + bird_height/2);
+			else{
+				ddeg = -0.15
+				x = 180;
+				collide_ceiling_action(y);
+			}
+			// collide_ground_action();
+		}
+		if ( y + bird_height/2 >= pipe_pos[0]+pipe_interval[0] ){	
+			// collide_ceiling_action();
+			if( 54 <= scene_time && scene_time <= 120 )
+				collide_ground_action();
+			else{
+				collide_ground_action(y);
+			}
+		}
 	}
 
 	// draw bird
@@ -170,6 +183,26 @@ function draw() {
 	rotate(deg);
 	image(birdImg[bird_color_idx][min(2,int(bird_wing_time/10))], -bird_width/2 , -bird_height/2  , bird_width, bird_height);
 	pop();	
+
+	// draw pipe
+	if(start){
+		for(let i=0;i<2;i++){			
+			// pipe move
+			image(pipeImg[0][1], scene_time - i*W + 80, pipe_pos[i]-pipe_height ,pipe_width, pipe_height);
+			image(pipeImg[0][0], scene_time - i*W + 80, pipe_pos[i]+pipe_interval[i] ,pipe_width, pipe_height);			
+		}
+		// draw score
+		let score_string = score.toString();
+		let start_with = W/2 - (score_string.length * score_width)/2;
+		for(let i = 0 ; i< score_string.length ; i++){
+			image(numImg[score_string[i]], start_with + score_width * i , 150 , score_width,score_height);
+		}
+	}
+
+	// draw gameover
+	if (end){
+		image(endImg, (W - endImg.width*2)/2 , (H - endImg.height*6)/2,endImg.width*2,endImg.height*2);
+	}
 
 	// draw ground
 	image(baseImg, scene_time-W, H-baseImg.height, baseImg.width*1.5);
