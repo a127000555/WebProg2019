@@ -149,7 +149,6 @@ function draw() {
 		image(openImg, (W - openImg.width*2)/2 , (H - openImg.height*2)/2,openImg.width*2,openImg.height*2);
 	}
 
-	console.log('end',end);
 	// ceiling / ground collision detect.
 	if( y < 0 )
 		collide_ceiling_action();
@@ -169,11 +168,12 @@ function draw() {
 		}
 		if ( y + bird_height/2 >= pipe_pos[0]+pipe_interval[0] ){	
 			// collide_ceiling_action();
-			if( 54 <= scene_time && scene_time <= 120 )
-				collide_ground_action();
-			else{
-				collide_ground_action(y);
-			}
+			if(end != 1)
+				if( 54 <= scene_time && scene_time <= 120)
+					collide_ground_action();
+				else{
+					collide_ground_action(y);
+				}
 		}
 	}
 
