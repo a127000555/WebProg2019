@@ -15,13 +15,8 @@ class CalcApp extends React.Component {
     
     // Special case replace x -> *
     input = input.replace("x", "*");
-    if( isNaN(input.charAt(input.length-1)) ){
-
-    
+    if( isNaN(input.charAt(input.length-1)) )
       return "Wrong"
-
-    }
-
     try{
       return String(eval(input));
     }catch( e ){
@@ -58,7 +53,6 @@ class CalcApp extends React.Component {
 
         }else{
           // Process Pure Digit
-
           if( prev === "0" ){
             // If previous is 0 and input is number, 0 will be canceled.
             this.setState({ calc_display: input });
@@ -114,7 +108,7 @@ class CalcApp extends React.Component {
             <CalcButton className="calc-operator" onClick={this.addNewChar('+')}>+</CalcButton>
           </div>
           <div className="calc-row">
-            <CalcButton className="calc-number0" onClick={this.addNewChar(0)}> 0</CalcButton>
+            <CalcButton className="calc-number0" onClick={this.addNewChar("0")}> 0</CalcButton>
             <CalcButton className="calc-number">.</CalcButton>
             <CalcButton className="calc-operator" onClick={this.addNewChar('=')}>=</CalcButton>
           </div>
