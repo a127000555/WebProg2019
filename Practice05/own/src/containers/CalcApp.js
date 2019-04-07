@@ -32,7 +32,7 @@ class CalcApp extends React.Component {
       console.log(this.last_is_equal);
       let prev = this.state.calc_display;
       if( input === '='){
-        // Equals is special case.
+        // Equals is special case
         this.setState({ calc_display: this.self_eval(prev) });
         this.last_is_equal = true;
       }else{
