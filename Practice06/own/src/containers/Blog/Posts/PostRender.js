@@ -18,10 +18,21 @@ export default class PostRender extends Component {
                 )
             }
             <div>
+            {
+                id > 0 ?                    
+                <button className="nav_btn">
+                    <NavLink to={"/posts/"+(Number(id)-1)}>Next page</NavLink>
+                </button> : <noscript></noscript>
+            }
             <button className="nav_btn">
                 <NavLink to="/">Goto Homepage</NavLink>
             </button>
-            
+            {
+                id <= 10 ?                    
+                <button className="nav_btn">
+                    <NavLink to={"/posts/"+(Number(id)+1)}>Next page</NavLink>
+                </button> : <noscript></noscript>
+            }
             </div>
         </div>
     }
