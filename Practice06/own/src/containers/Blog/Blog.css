@@ -1,0 +1,21 @@
+.nav_bar{
+    margin: auto;
+    align-items: center;
+    align-content: center;
+    text-align:center;    
+    border: 2px;
+}
+.nav_btn{
+    margin-left: 20px;
+    margin-right: 20px;
+    box-shadow:0 0 5px #2b0000, 0 0 20px #c00, 0 0 10px #f00;
+    font-weight: bold;
+    display: inline-flex;
+}
+.context{
+
+    margin: auto;
+    align-items: center;
+    align-content: center;
+    text-align:center;
+}
