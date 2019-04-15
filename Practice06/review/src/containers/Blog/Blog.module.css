@@ -1,0 +1,60 @@
+.header {
+	width: 100%;
+}
+
+.navlist {
+	list-style: none;
+	margin: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.navitem {
+	margin: 5px 20px;
+}
+
+.navitem a {
+	text-decoration: none;
+	color: black;
+}
+
+.title {
+	display: 'flex';
+    align-items: center;
+    justify-content: center;
+	text-align: center;
+    width: 50%;
+	margin: auto;
+	margin-top: 30px;
+	font: bold 34px "Century Schoolbook", Georgia, Times, serif;
+	color: #444;
+	padding: 0px 0px 6px 0px;
+	font-size: 45px;
+	line-height: 44px;
+	letter-spacing: -2px;
+	font-weight: bold;
+}
+
+@-webkit-keyframes blinker {
+	from {opacity: 1.0;}
+	to {opacity: 0.0;}
+  }
+  .blink{
+    display: 'flex';
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+    border-radius: 2px;
+    font-size: 10px;
+    font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: #444;
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+  }
